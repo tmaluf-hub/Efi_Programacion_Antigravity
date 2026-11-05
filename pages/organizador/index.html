@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Organizador — FeriaZone</title>
+  
+  <script>
+    (function() {
+      try {
+        var theme = localStorage.getItem('fz_theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (theme === 'dark' || (!theme && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <link rel="stylesheet" href="../../css/styles.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-accent selection:text-white">
+
+  <div id="navbar-placeholder"></div>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow w-full space-y-8">
+    
+    <!-- Header Organizador -->
+    <div class="card-surface p-6 sm:p-8 border border-sand/40 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center space-x-4">
+        <div class="w-16 h-16 rounded-2xl bg-sand-dark text-ink flex items-center justify-center text-3xl font-bold shadow-md">
+          📋
+        </div>
+        <div>
+          <span class="text-xs font-bold text-accent uppercase tracking-wider">Panel de Administrador de Ferias</span>
+          <h1 id="org-name" class="text-2xl sm:text-3xl font-black text-ink dark:text-white font-heading">
+            Coordinación de Ferias y Eventos
+          </h1>
+          <p class="text-xs text-ink-muted dark:text-slate-400">
+            Suscripción: <strong class="text-emerald-600">Activa ($18.000 ARS/mes)</strong> · Soporte 24/7
+          </p>
+        </div>
+      </div>
+
+      <button id="open-new-fair-btn" class="btn-accent text-xs py-2.5 px-4 font-bold flex items-center gap-1.5 shadow-sm">
+        <span>+</span>
+        <span>Crear Nueva Feria</span>
+      </button>
+    </div>
+
+    <!-- TABLERO DE FERIAS ACTIVAS / EDICIÓN -->
+    <section class="space-y-4">
+      <h2 class="text-xl font-bold text-ink dark:text-white font-heading">
+        Ferias bajo tu Coordinación
+      </h2>
+
+      <div class="card-surface overflow-x-auto border border-sand/40">
+        <table class="w-full text-left text-xs sm:text-sm">
+          <thead class="bg-sand/30 dark:bg-slate-800 text-ink dark:text-sand-light uppercase text-[11px] font-bold border-b border-sand/30">
+            <tr>
+              <th class="p-3.5">Feria</th>
+              <th class="p-3.5">Lugar</th>
+              <th class="p-3.5">Horarios</th>
+              <th class="p-3.5">Puestos</th>
+              <th class="p-3.5">Visibilidad</th>
+              <th class="p-3.5 text-right">Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="org-fairs-tbody" class="divide-y divide-sand/20 dark:divide-slate-800">
+            <!-- Dinámico -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- FORMULARIO CREAR / EDITAR FERIA CON CLIC EN MAPA -->
+    <section id="create-fair-section" class="card-surface p-6 sm:p-8 space-y-6 border border-sand/40">
+      <div class="border-b border-sand/30 pb-3">
+        <h3 class="text-xl font-bold text-ink dark:text-white font-heading">
+          Crear o Editar Convocatoria de Feria
+        </h3>
+        <p class="text-xs text-ink-muted dark:text-slate-400 mt-1">
+          Hacé clic en el mapa de Río Cuarto para fijar las coordenadas exactas de los puestos.
+        </p>
+      </div>
+
+      <form id="fair-form" class="space-y-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-bold text-ink dark:text-white mb-1">Nombre de la Feria</label>
+            <input type="text" id="fair-input-name" required placeholder="Ej: Feria Cultural Paseo Peatonal" class="w-full px-3.5 py-2 rounded-xl border border-sand/60 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm">
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-ink dark:text-white mb-1">Ubicación / Punto Físico</label>
+            <input type="text" id="fair-input-location" required placeholder="Ej: Plaza Central, Río Cuarto" class="w-full px-3.5 py-2 rounded-xl border border-sand/60 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div>
+            <label class="block text-xs font-bold text-ink dark:text-white mb-1">Zona Barrial</label>
+            <input type="text" id="fair-input-zone" required placeholder="Ej: Macrocentro / Alberdi" class="w-full px-3.5 py-2 rounded-xl border border-sand/60 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm">
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-ink dark:text-white mb-1">Días y Horarios</label>
+            <input type="text" id="fair-input-schedule" required placeholder="Ej: Sábados y Domingos 16 a 21 hs" class="w-full px-3.5 py-2 rounded-xl border border-sand/60 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm">
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-ink dark:text-white mb-1">Capacidad Total de Puestos</label>
+            <input type="number" id="fair-input-capacity" required min="5" value="30" class="w-full px-3.5 py-2 rounded-xl border border-sand/60 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm">
+          </div>
+        </div>
+
+        <!-- Coordenadas elegidas por clic -->
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-bold text-ink dark:text-white mb-1">Latitud (Clic en mapa)</label>
+            <input type="text" id="fair-input-lat" required readonly value="-33.123" class="w-full px-3.5 py-2 rounded-xl border border-sand/60 bg-sand/15 text-sm font-mono">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-ink dark:text-white mb-1">Longitud (Clic en mapa)</label>
+            <input type="text" id="fair-input-lng" required readonly value="-64.349" class="w-full px-3.5 py-2 rounded-xl border border-sand/60 bg-sand/15 text-sm font-mono">
+          </div>
+        </div>
+
+        <!-- Mapa interactivo para selección con clic -->
+        <div>
+          <label class="block text-xs font-bold text-ink dark:text-white mb-1">Hacé clic sobre el mapa para fijar el punto:</label>
+          <div id="org-picker-map" class="h-64 rounded-2xl border border-sand/40 overflow-hidden z-10"></div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-ink dark:text-white mb-1">Servicios (separados por coma)</label>
+          <input type="text" id="fair-input-services" value="Baños químicos, Bajada de electricidad, Seguridad, Patio gastronómico" class="w-full px-3.5 py-2 rounded-xl border border-sand/60 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm">
+        </div>
+
+        <button type="submit" class="btn-accent py-3 px-6 text-sm font-bold shadow-md">
+          Guardar y Publicar Feria en el Mapa Público
+        </button>
+      </form>
+    </section>
+
+    <!-- SOPORTE Y FORMULARIO HACIA LOS DESARROLLADORES -->
+    <section class="card-surface p-6 sm:p-8 space-y-4 border border-sand/40 max-w-2xl">
+      <h3 class="text-lg font-bold text-ink dark:text-white font-heading">
+        Soporte Técnico hacia Desarrolladores
+      </h3>
+      <p class="text-xs text-ink-muted dark:text-slate-400">
+        ¿Tenés dudas técnicas o necesitás asistencia con el mapa? Envianos un ticket directo.
+      </p>
+
+      <form id="org-support-form" class="space-y-3">
+        <div>
+          <label class="block text-xs font-bold text-ink dark:text-white mb-1">Asunto</label>
+          <input type="text" required placeholder="Ej: Consulta por cupo adicional de stands" class="w-full px-3.5 py-2 rounded-xl border border-sand/60 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm">
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-ink dark:text-white mb-1">Mensaje</label>
+          <textarea rows="3" required placeholder="Detallá tu solicitud para el equipo técnico del EFI..." class="w-full px-3.5 py-2 rounded-xl border border-sand/60 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm"></textarea>
+        </div>
+        <button type="submit" class="btn-primary py-2 px-5 text-xs font-bold">
+          Enviar Ticket a Soporte
+        </button>
+      </form>
+    </section>
+
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script type="module" src="../../js/pages/panelOrganizador.js"></script>
+</body>
+</html>

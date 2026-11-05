@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Cuenta — FeriaZone</title>
+  
+  <script>
+    (function() {
+      try {
+        var theme = localStorage.getItem('fz_theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (theme === 'dark' || (!theme && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-accent selection:text-white">
+
+  <div id="navbar-placeholder"></div>
+
+  <main class="max-w-xl mx-auto px-4 sm:px-6 py-12 flex-grow w-full space-y-6">
+    <div class="text-center space-y-2">
+      <h1 class="text-3xl font-black text-ink dark:text-white font-heading">
+        Crear Cuenta en FeriaZone
+      </h1>
+      <p class="text-xs text-ink-muted dark:text-slate-300">
+        Elegí si querés comprar como vecino o vender como feriante artesanal.
+      </p>
+    </div>
+
+    <div class="card-surface p-6 sm:p-8 space-y-6 border border-sand/40">
+      <form id="register-form" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-ink dark:text-white mb-1">¿Cómo te sumás?</label>
+          <div class="grid grid-cols-2 gap-3">
+            <label class="flex items-center space-x-2 p-3 rounded-xl border border-sand/60 cursor-pointer bg-sand/10 hover:bg-sand/30">
+              <input type="radio" name="reg-role" value="usuario" checked class="text-accent">
+              <span class="text-xs font-bold text-ink dark:text-white">Vecino Comprador</span>
+            </label>
+            <label class="flex items-center space-x-2 p-3 rounded-xl border border-sand/60 cursor-pointer bg-sand/10 hover:bg-sand/30">
+              <input type="radio" name="reg-role" value="feriante" class="text-accent">
+              <span class="text-xs font-bold text-ink dark:text-white">Feriante Productor</span>
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label for="reg-name" class="block text-xs font-bold text-ink dark:text-white mb-1">Nombre Completo</label>
+          <input type="text" id="reg-name" required placeholder="Ej: Santiago Albarracín" class="w-full px-4 py-2.5 rounded-xl border border-sand/60 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm">
+        </div>
+
+        <div>
+          <label for="reg-email" class="block text-xs font-bold text-ink dark:text-white mb-1">Correo Electrónico</label>
+          <input type="email" id="reg-email" required placeholder="tuemail@gmail.com" class="w-full px-4 py-2.5 rounded-xl border border-sand/60 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm">
+        </div>
+
+        <div>
+          <label for="reg-phone" class="block text-xs font-bold text-ink dark:text-white mb-1">Teléfono / WhatsApp</label>
+          <input type="tel" id="reg-phone" required placeholder="+54 9 358 4112233" class="w-full px-4 py-2.5 rounded-xl border border-sand/60 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm">
+        </div>
+
+        <div>
+          <label for="reg-pass" class="block text-xs font-bold text-ink dark:text-white mb-1">Contraseña</label>
+          <input type="password" id="reg-pass" required placeholder="Mínimo 6 caracteres" class="w-full px-4 py-2.5 rounded-xl border border-sand/60 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm">
+        </div>
+
+        <button type="submit" class="btn-accent w-full py-3 text-sm font-bold shadow-md">
+          Crear mi cuenta
+        </button>
+      </form>
+
+      <div class="text-center pt-2 border-t border-sand/30 dark:border-slate-700">
+        <p class="text-xs text-ink-muted dark:text-slate-400">
+          ¿Ya tenés cuenta? 
+          <a href="./login.html" class="text-accent font-bold hover:underline">Iniciá sesión acá</a>
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script type="module">
+    import { renderNavbar } from '../js/components/navbar.js';
+    import { renderFooter } from '../js/components/footer.js';
+    import { showToast } from '../js/components/toast.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderNavbar();
+      renderFooter();
+
+      document.getElementById('register-form')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        showToast('Registro simulado con éxito. Ahora podés iniciar sesión.', 'success');
+        setTimeout(() => window.location.href = './login.html', 800);
+      });
+    });
+  </script>
+</body>
+</html>

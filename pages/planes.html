@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Planes y Promociones — FeriaZone</title>
+  
+  <script>
+    (function() {
+      try {
+        var theme = localStorage.getItem('fz_theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (theme === 'dark' || (!theme && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-accent selection:text-white">
+
+  <div id="navbar-placeholder"></div>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow w-full space-y-16">
+    
+    <div class="text-center max-w-3xl mx-auto space-y-3">
+      <span class="text-xs font-bold text-accent uppercase tracking-widest">
+        Modelo de Sostenibilidad y Crecimiento
+      </span>
+      <h1 class="text-3xl sm:text-5xl font-black text-ink dark:text-white font-heading">
+        Planes y Paquetes de Visibilidad
+      </h1>
+      <p class="text-base text-ink-muted dark:text-slate-300 leading-relaxed">
+        <strong>Sin comisión por venta:</strong> el 100% de tus ventas es tuyo. Ofrecemos herramientas de impulso transparentes para feriantes y organizadores.
+      </p>
+    </div>
+
+    <!-- SECCIÓN 1: PLANES DE PUBLICACIÓN (BÁSICO VS PRO) -->
+    <section class="space-y-6">
+      <div class="text-center">
+        <h2 class="text-2xl font-bold text-ink dark:text-white font-heading">
+          Planes de Publicación para Emprendedores
+        </h2>
+        <p class="text-xs text-ink-muted dark:text-slate-400">Elegí la escala que necesita tu catálogo artesanal.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        
+        <!-- Plan Básico (Gratuito) -->
+        <article class="card-surface p-8 border border-sand/50 flex flex-col justify-between space-y-6">
+          <div class="space-y-4">
+            <span class="px-3 py-1 rounded-full text-xs font-bold bg-sand/50 text-ink">Plan Inicial</span>
+            <h3 class="text-2xl font-bold text-ink dark:text-white font-heading">Plan Básico</h3>
+            <p class="text-xs text-ink-muted dark:text-slate-300">Ideal para artesanos que están comenzando a digitalizar su puesto.</p>
+            
+            <div class="pt-2">
+              <span class="text-4xl font-black text-ink dark:text-white font-heading">$0</span>
+              <span class="text-xs text-ink-muted"> / Para siempre</span>
+            </div>
+
+            <ul class="space-y-2.5 text-xs text-ink dark:text-slate-200 pt-4 border-t border-sand/30">
+              <li class="flex items-center gap-2">✓ <strong>Hasta 15 productos</strong> publicados</li>
+              <li class="flex items-center gap-2">✓ Perfil público de emprendimiento</li>
+              <li class="flex items-center gap-2">✓ Botón directo a tu WhatsApp</li>
+              <li class="flex items-center gap-2">✓ Postulación a ferias de Río Cuarto</li>
+              <li class="flex items-center gap-2 text-ink-light dark:text-slate-500">✕ Sin insignia destacada en la Home</li>
+            </ul>
+          </div>
+
+          <a href="./login.html" class="btn-outline w-full text-center text-xs py-3 font-bold">
+            Comenzar Gratis
+          </a>
+        </article>
+
+        <!-- Plan Pro (De pago) -->
+        <article class="card-surface p-8 border-2 border-accent relative flex flex-col justify-between space-y-6 shadow-xl">
+          <span class="absolute -top-3 right-6 bg-accent text-white text-[11px] font-bold px-3 py-1 rounded-full shadow-md">
+            Recomendado
+          </span>
+
+          <div class="space-y-4">
+            <span class="px-3 py-1 rounded-full text-xs font-bold bg-accent/20 text-accent">Para Productores Consolidados</span>
+            <h3 class="text-2xl font-bold text-ink dark:text-white font-heading">Plan Pro</h3>
+            <p class="text-xs text-ink-muted dark:text-slate-300">Catálogo sin límites, insignia de confianza y analíticas de visitas.</p>
+            
+            <div class="pt-2">
+              <span class="text-4xl font-black text-accent font-heading">$9.500</span>
+              <span class="text-xs text-ink-muted"> ARS / mes</span>
+            </div>
+
+            <ul class="space-y-2.5 text-xs text-ink dark:text-slate-200 pt-4 border-t border-sand/30">
+              <li class="flex items-center gap-2">✓ <strong>Productos ilimitados</strong> en catálogo</li>
+              <li class="flex items-center gap-2">✓ Insignia oficial de <strong>Feriante Verificado</strong></li>
+              <li class="flex items-center gap-2">✓ Estadísticas avanzadas de clics y pedidos</li>
+              <li class="flex items-center gap-2">✓ Soporte prioritario por WhatsApp</li>
+              <li class="flex items-center gap-2">✓ 15% de descuento en paquetes de promoción</li>
+            </ul>
+          </div>
+
+          <a href="./login.html" class="btn-accent w-full text-center text-xs py-3 font-bold shadow-md">
+            Suscribirme al Plan Pro
+          </a>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: PAQUETES DE PROMOCIÓN TEMPORAL -->
+    <section class="space-y-6 bg-sand/20 dark:bg-slate-900/40 p-8 sm:p-12 rounded-3xl border border-sand/30">
+      <div class="text-center max-w-2xl mx-auto space-y-2">
+        <span class="text-xs font-bold text-accent uppercase tracking-widest">Impulso a Demanda</span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-ink dark:text-white font-heading">
+          Paquetes de Promoción Temporal
+        </h2>
+        <p class="text-xs text-ink-muted dark:text-slate-300">
+          Contratalos por 7, 15 o 30 días cuando tengas promociones de temporada o ferias especiales.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <div class="card-surface p-6 space-y-3 border border-sand/40">
+          <span class="text-2xl">🥇</span>
+          <h3 class="font-bold text-lg text-ink dark:text-white font-heading">Producto Destacado</h3>
+          <p class="text-xs text-ink-muted dark:text-slate-300">Aparece en la cabecera del catálogo general con insignia dorada.</p>
+          <p class="text-xs font-bold text-accent">Desde $4.500 ARS (7 días)</p>
+        </div>
+
+        <div class="card-surface p-6 space-y-3 border border-sand/40">
+          <span class="text-2xl">🎪</span>
+          <h3 class="font-bold text-lg text-ink dark:text-white font-heading">Vidriera en la Home</h3>
+          <p class="text-xs text-ink-muted dark:text-slate-300">Tu emprendimiento en la portada principal visitada por miles de vecinos.</p>
+          <p class="text-xs font-bold text-accent">Desde $7.500 ARS (7 días)</p>
+        </div>
+
+        <div class="card-surface p-6 space-y-3 border border-sand/40">
+          <span class="text-2xl">🗺️</span>
+          <h3 class="font-bold text-lg text-ink dark:text-white font-heading">Impulso en Feria</h3>
+          <p class="text-xs text-ink-muted dark:text-slate-300">Resaltado exclusivo en el mapa de Leaflet y ficha del evento.</p>
+          <p class="text-xs font-bold text-accent">Desde $6.000 ARS (7 días)</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3: ORGANIZADORES -->
+    <section id="organizadores" class="card-surface p-8 sm:p-12 border border-sand/40 max-w-3xl mx-auto space-y-6 text-center">
+      <span class="text-xs font-bold text-primary dark:text-sand-light uppercase tracking-wider">Para Coordinadores de Ferias</span>
+      <h2 class="text-2xl sm:text-3xl font-black text-ink dark:text-white font-heading">
+        Suscripción para Organizadores y Entes Feriales
+      </h2>
+      <p class="text-sm text-ink-muted dark:text-slate-300 leading-relaxed">
+        El ente organizador o vecinal abona un canon mensual de <strong>$18.000 ARS</strong> por el acceso ilimitado al panel de administración: creación de ferias georreferenciadas, recepción de postulaciones de feriantes, control de cupos y soporte continuo.
+      </p>
+      <a href="./contacto.html" class="btn-primary text-xs py-3 px-6 inline-block font-bold">
+        Solicitar Cuenta de Organizador
+      </a>
+    </section>
+
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script type="module">
+    import { renderNavbar } from '../js/components/navbar.js';
+    import { renderFooter } from '../js/components/footer.js';
+    document.addEventListener('DOMContentLoaded', () => {
+      renderNavbar();
+      renderFooter();
+    });
+  </script>
+</body>
+</html>

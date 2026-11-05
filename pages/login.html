@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar Sesión — FeriaZone</title>
+  
+  <script>
+    (function() {
+      try {
+        var theme = localStorage.getItem('fz_theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (theme === 'dark' || (!theme && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-accent selection:text-white">
+
+  <div id="navbar-placeholder"></div>
+
+  <main class="max-w-xl mx-auto px-4 sm:px-6 py-12 flex-grow w-full space-y-8">
+    
+    <div class="text-center space-y-2">
+      <div class="w-16 h-16 rounded-2xl bg-primary text-white flex items-center justify-center text-3xl mx-auto shadow-md">
+        🎪
+      </div>
+      <h1 class="text-3xl font-black text-ink dark:text-white font-heading">
+        Ingresar a FeriaZone
+      </h1>
+      <p class="text-xs text-ink-muted dark:text-slate-300">
+        Iniciá sesión o elegí un perfil demostrativo para evaluar el proyecto.
+      </p>
+    </div>
+
+    <!-- BOTONES DE ACCESO RÁPIDO DEMO -->
+    <div class="card-surface p-6 border border-accent/40 space-y-4 bg-accent/5">
+      <div class="text-center">
+        <span class="text-xs font-bold uppercase tracking-wider text-accent block">Evaluación de Cátedra</span>
+        <h3 class="text-base font-bold text-ink dark:text-white">Acceso Rápido Demo (1 Clic)</h3>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <button id="demo-user-btn" class="btn-primary text-xs py-3 px-2 flex flex-col items-center gap-1 text-center shadow-xs">
+          <span class="text-lg">🛍️</span>
+          <span class="font-bold">Vecino</span>
+          <span class="text-[10px] opacity-80">Comprador</span>
+        </button>
+
+        <button id="demo-merchant-btn" class="btn-accent text-xs py-3 px-2 flex flex-col items-center gap-1 text-center shadow-xs">
+          <span class="text-lg">🛠️</span>
+          <span class="font-bold">Feriante</span>
+          <span class="text-[10px] opacity-80">Emprendedor</span>
+        </button>
+
+        <button id="demo-org-btn" class="btn-outline bg-white dark:bg-slate-800 text-xs py-3 px-2 flex flex-col items-center gap-1 text-center shadow-xs">
+          <span class="text-lg">📋</span>
+          <span class="font-bold">Organizador</span>
+          <span class="text-[10px] opacity-80">Administrador</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- FORMULARIO CONVENCIONAL -->
+    <div class="card-surface p-6 sm:p-8 space-y-6 border border-sand/40">
+      <form id="login-form" class="space-y-4">
+        <div>
+          <label for="login-email" class="block text-xs font-bold text-ink dark:text-white mb-1">Correo Electrónico</label>
+          <input 
+            type="email" 
+            id="login-email" 
+            required 
+            placeholder="ejemplo@feriazone.com.ar"
+            class="w-full px-4 py-2.5 rounded-xl border border-sand/60 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-ink dark:text-white"
+          >
+        </div>
+
+        <div>
+          <label for="login-pass" class="block text-xs font-bold text-ink dark:text-white mb-1">Contraseña</label>
+          <input 
+            type="password" 
+            id="login-pass" 
+            required 
+            placeholder="••••••••"
+            class="w-full px-4 py-2.5 rounded-xl border border-sand/60 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-ink dark:text-white"
+          >
+        </div>
+
+        <button type="submit" class="btn-accent w-full py-3 text-sm font-bold shadow-md">
+          Entrar a mi cuenta
+        </button>
+      </form>
+
+      <div class="text-center pt-2 border-t border-sand/30 dark:border-slate-700">
+        <p class="text-xs text-ink-muted dark:text-slate-400">
+          ¿No tenés cuenta todavía? 
+          <a href="./registro.html" class="text-accent font-bold hover:underline">Registrate acá</a>
+        </p>
+      </div>
+    </div>
+
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script type="module" src="../js/pages/login.js"></script>
+</body>
+</html>

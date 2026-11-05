@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FeriaZone — El Mercado y Guía de Ferias de Río Cuarto</title>
+  <meta name="description" content="Plataforma de ferias, productos artesanales y emprendedores locales de Río Cuarto, Córdoba. Comprá directo al productor y encontrá tu feria más cercana.">
+
+  <!-- Script anti-parpadeo FOUC -->
+  <script>
+    (function() {
+      try {
+        var theme = localStorage.getItem('fz_theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (theme === 'dark' || (!theme && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-accent selection:text-white">
+
+  <!-- Navbar inyectada -->
+  <div id="navbar-placeholder"></div>
+
+  <main class="flex-grow space-y-16 sm:space-y-24 pb-16">
+
+    <!-- HERO SECTION -->
+    <section class="relative bg-gradient-to-b from-primary/15 via-cream to-cream dark:from-slate-900 dark:via-[#151B24] dark:to-[#151B24] pt-12 pb-16 px-4 sm:px-6 lg:px-8 border-b border-sand/30 dark:border-slate-800">
+      <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sand/40 dark:bg-slate-800 text-xs sm:text-sm font-semibold text-primary dark:text-sand-light border border-sand/50">
+            <span>📍</span>
+            <span>Río Cuarto, Córdoba · Parque Sarmiento, Andino y más</span>
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-ink dark:text-white font-heading leading-tight tracking-tight">
+            El mercado artesanal de tu ciudad, <span class="text-accent underline decoration-sand/50">todos los días</span>.
+          </h1>
+
+          <p class="text-base sm:text-lg text-ink-muted dark:text-slate-300 max-w-2xl leading-relaxed">
+            Descubrí y comprá mates, textiles, cerámicas, plantas y conservas hechas por productores riocuartenses. Ubicá las ferias del fin de semana y conectate con los feriantes sin comisiones.
+          </p>
+
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 pt-2">
+            <a href="./pages/catalogo.html" class="btn-accent w-full sm:w-auto text-base px-6 py-3 shadow-md">
+              Explorar Catálogo
+            </a>
+            <a href="./pages/mapa.html" class="btn-primary w-full sm:w-auto text-base px-6 py-3 shadow-md flex items-center justify-center gap-2">
+              <span>🗺️</span>
+              <span>Feria más cercana</span>
+            </a>
+            <a href="./pages/planes.html" class="btn-outline w-full sm:w-auto text-base px-5 py-3">
+              Sumar mi Puesto
+            </a>
+          </div>
+
+          <!-- Métricas de impacto barrial -->
+          <div class="grid grid-cols-3 gap-4 pt-6 border-t border-sand/30 dark:border-slate-800 max-w-lg mx-auto lg:mx-0">
+            <div>
+              <span class="block text-2xl sm:text-3xl font-extrabold text-accent font-heading">6</span>
+              <span class="text-xs text-ink-light dark:text-slate-400 font-medium">Puntos Feriales</span>
+            </div>
+            <div>
+              <span class="block text-2xl sm:text-3xl font-extrabold text-primary dark:text-sand-light font-heading">+60</span>
+              <span class="text-xs text-ink-light dark:text-slate-400 font-medium">Productos Activos</span>
+            </div>
+            <div>
+              <span class="block text-2xl sm:text-3xl font-extrabold text-accent font-heading">100%</span>
+              <span class="text-xs text-ink-light dark:text-slate-400 font-medium">Comercio Local</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Imagen Destacada del Hero -->
+        <div class="lg:col-span-5 relative">
+          <div class="relative mx-auto max-w-md lg:max-w-none rounded-3xl overflow-hidden shadow-2xl border-4 border-white dark:border-slate-800">
+            <img 
+              src="https://images.unsplash.com/photo-1533900298318-6b8da08a523e?auto=format&fit=crop&w=1000&q=80" 
+              alt="Puestos de artesanías al aire libre en Río Cuarto" 
+              class="w-full h-80 sm:h-96 object-cover"
+            >
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex flex-col justify-end p-6 text-white">
+              <span class="text-xs uppercase tracking-wider font-semibold text-sand-light">Feria Destacada</span>
+              <h2 class="text-xl font-bold font-heading">Feria del Parque Sarmiento</h2>
+              <p class="text-xs text-slate-200 mt-1">Sábados y Domingos desde las 16 hs · Banda Norte</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PRODUCTOS DESTACADOS (PROMOCIONADOS) -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+      <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4">
+        <div>
+          <span class="text-xs uppercase tracking-widest font-bold text-accent">Servicio de Promoción</span>
+          <h2 class="text-2xl sm:text-3xl font-black text-ink dark:text-white font-heading">
+            Productos Destacados de la Semana
+          </h2>
+          <p class="text-sm text-ink-muted dark:text-slate-300 mt-1">
+            Artesanías y alimentos con impulso activo elegidos por nuestros feriantes.
+          </p>
+        </div>
+        <a href="./pages/catalogo.html" class="text-accent font-bold text-sm hover:underline flex items-center gap-1">
+          Ver todo el catálogo →
+        </a>
+      </div>
+
+      <!-- Grilla de Productos Destacados -->
+      <div id="home-featured-products" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Renderizado dinámico -->
+      </div>
+    </section>
+
+    <!-- PRÓXIMAS FERIAS Y GUÍA -->
+    <section class="bg-sand/20 dark:bg-slate-900/50 py-16 border-y border-sand/30 dark:border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4">
+          <div>
+            <span class="text-xs uppercase tracking-widest font-bold text-primary dark:text-sand-light">Agenda Ferial Río Cuarto</span>
+            <h2 class="text-2xl sm:text-3xl font-black text-ink dark:text-white font-heading">
+              Próximas Ferias en la Ciudad
+            </h2>
+            <p class="text-sm text-ink-muted dark:text-slate-300 mt-1">
+              Conocé las fechas, lugares y servicios de cada paseo artesanal.
+            </p>
+          </div>
+          <a href="./pages/ferias.html" class="text-primary dark:text-sand-light font-bold text-sm hover:underline flex items-center gap-1">
+            Ver todas las ferias →
+          </a>
+        </div>
+
+        <div id="home-fairs-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Renderizado dinámico -->
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDRIERA EN LA HOME: EMPRENDIMIENTOS DESTACADOS -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      <div class="text-center max-w-2xl mx-auto space-y-2">
+        <span class="text-xs uppercase tracking-widest font-bold text-accent">Vidriera de Emprendedores</span>
+        <h2 class="text-2xl sm:text-3xl font-black text-ink dark:text-white font-heading">
+          Conocé a los Feriantes de Río Cuarto
+        </h2>
+        <p class="text-sm text-ink-muted dark:text-slate-300">
+          Productores locales que le ponen dedicación e identidad a cada creación.
+        </p>
+      </div>
+
+      <div id="home-merchants-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Renderizado dinámico -->
+      </div>
+    </section>
+
+    <!-- CÓMO FUNCIONA FERIAZONE (3 ROLES) -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="card-surface p-8 sm:p-12 border border-sand/40">
+        <div class="text-center max-w-2xl mx-auto space-y-2 mb-10">
+          <span class="text-xs uppercase tracking-widest font-bold text-accent">Plataforma Comunitaria</span>
+          <h2 class="text-2xl sm:text-3xl font-black text-ink dark:text-white font-heading">
+            ¿Cómo funciona FeriaZone?
+          </h2>
+          <p class="text-sm text-ink-muted dark:text-slate-300">
+            Un ecosistema creado a la medida de nuestra economía local.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          
+          <!-- Rol Vecino -->
+          <div class="space-y-4 p-6 rounded-2xl bg-cream dark:bg-slate-800/60 border border-sand/30">
+            <div class="w-12 h-12 rounded-xl bg-accent text-white flex items-center justify-center text-2xl font-bold">
+              🛍️
+            </div>
+            <h3 class="text-xl font-bold text-ink dark:text-white font-heading">1. Para los Vecinos</h3>
+            <p class="text-sm text-ink-muted dark:text-slate-300 leading-relaxed">
+              Explorá productos artesanales, agregalos al carrito, ubicá en el mapa la feria más cercana a tu casa y coordiná la entrega o retiro directo por WhatsApp.
+            </p>
+            <a href="./pages/catalogo.html" class="inline-block text-xs font-bold text-accent hover:underline">
+              Empezar a comprar →
+            </a>
+          </div>
+
+          <!-- Rol Feriante -->
+          <div class="space-y-4 p-6 rounded-2xl bg-cream dark:bg-slate-800/60 border border-sand/30">
+            <div class="w-12 h-12 rounded-xl bg-primary text-white flex items-center justify-center text-2xl font-bold">
+              🛠️
+            </div>
+            <h3 class="text-xl font-bold text-ink dark:text-white font-heading">2. Para los Feriantes</h3>
+            <p class="text-sm text-ink-muted dark:text-slate-300 leading-relaxed">
+              Subí tus productos gratis (hasta 15 en el Plan Básico), postulate a las ferias organizadas de la ciudad y contratá paquetes de promoción para vender toda la semana.
+            </p>
+            <a href="./pages/planes.html" class="inline-block text-xs font-bold text-primary dark:text-sand-light hover:underline">
+              Ver planes de feriante →
+            </a>
+          </div>
+
+          <!-- Rol Organizador -->
+          <div class="space-y-4 p-6 rounded-2xl bg-cream dark:bg-slate-800/60 border border-sand/30">
+            <div class="w-12 h-12 rounded-xl bg-sand-dark text-ink flex items-center justify-center text-2xl font-bold">
+              📋
+            </div>
+            <h3 class="text-xl font-bold text-ink dark:text-white font-heading">3. Para Organizadores</h3>
+            <p class="text-sm text-ink-muted dark:text-slate-300 leading-relaxed">
+              Publicá ferias en el mapa con un clic, gestioná cupos y servicios (luz, baños, comidas) y administrá la inscripción de feriantes con un panel simple.
+            </p>
+            <a href="./pages/planes.html#organizadores" class="inline-block text-xs font-bold text-sand-dark dark:text-sand hover:underline">
+              Panel de organizador →
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- BANNER LLAMADO A LA ACCIÓN (CTA) -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-primary text-white rounded-3xl p-8 sm:p-12 shadow-xl border border-sand/30 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8">
+        <div class="space-y-3 max-w-xl text-center md:text-left z-10">
+          <span class="px-3 py-1 rounded-full bg-accent text-white text-xs font-bold uppercase tracking-wider">
+            Sin Comisión por Venta
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-black font-heading leading-tight">
+            ¿Tenés un emprendimiento o producís artesanías?
+          </h2>
+          <p class="text-sand-light text-sm sm:text-base leading-relaxed">
+            Sumate hoy a la vidriera digital de Río Cuarto. Creá tu cuenta de prueba y mostrá tus creaciones a toda la comunidad.
+          </p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto z-10">
+          <a href="./pages/registro.html" class="btn-accent text-center px-6 py-3 font-bold text-base shadow">
+            Registrarme como Feriante
+          </a>
+          <a href="./pages/login.html" class="btn-outline bg-white/10 hover:bg-white/20 text-white border-white/20 text-center px-5 py-3">
+            Ver Demo en Vivo
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer inyectado -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Script modular de la Home -->
+  <script type="module" src="./js/pages/home.js"></script>
+</body>
+</html>

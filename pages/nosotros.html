@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiénes Somos — FeriaZone (Equipo EFI 2026)</title>
+  
+  <script>
+    (function() {
+      try {
+        var theme = localStorage.getItem('fz_theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (theme === 'dark' || (!theme && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-accent selection:text-white">
+
+  <div id="navbar-placeholder"></div>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow w-full space-y-12">
+    
+    <div class="text-center max-w-3xl mx-auto space-y-3">
+      <span class="text-xs font-bold text-accent uppercase tracking-widest">
+        Examen Final Integrador — Programación II
+      </span>
+      <h1 class="text-3xl sm:text-5xl font-black text-ink dark:text-white font-heading">
+        El Equipo Detrás de FeriaZone
+      </h1>
+      <p class="text-base text-ink-muted dark:text-slate-300 leading-relaxed">
+        Somos estudiantes comprometidos con resolver la visibilidad digital de los artesanos y emprendedores de Río Cuarto.
+      </p>
+    </div>
+
+    <!-- Grilla del Equipo de Desarrollo -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      
+      <!-- Miembro 1 -->
+      <article class="card-surface p-6 text-center space-y-4 border border-sand/40 flex flex-col items-center">
+        <div class="w-28 h-28 rounded-3xl overflow-hidden border-2 border-accent shadow-md bg-sand/20">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="Integrante 1" class="w-full h-full object-cover">
+        </div>
+        <div>
+          <h3 class="text-lg font-bold text-ink dark:text-white font-heading">Agustina Romero</h3>
+          <p class="text-xs font-bold text-accent">Líder de Proyecto & Frontend</p>
+          <p class="text-xs text-ink-muted dark:text-slate-300 mt-2 leading-relaxed">
+            Coordinación de requerimientos, diseño de directivas y arquitectura de servicios de datos.
+          </p>
+        </div>
+      </article>
+
+      <!-- Miembro 2 -->
+      <article class="card-surface p-6 text-center space-y-4 border border-sand/40 flex flex-col items-center">
+        <div class="w-28 h-28 rounded-3xl overflow-hidden border-2 border-primary shadow-md bg-sand/20">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" alt="Integrante 2" class="w-full h-full object-cover">
+        </div>
+        <div>
+          <h3 class="text-lg font-bold text-ink dark:text-white font-heading">Tomás Cabrera</h3>
+          <p class="text-xs font-bold text-primary dark:text-sand-light">Frontend Developer & Lógica</p>
+          <p class="text-xs text-ink-muted dark:text-slate-300 mt-2 leading-relaxed">
+            Implementación de carrito, almacenamiento en localStorage y simulador de roles demo.
+          </p>
+        </div>
+      </article>
+
+      <!-- Miembro 3 -->
+      <article class="card-surface p-6 text-center space-y-4 border border-sand/40 flex flex-col items-center">
+        <div class="w-28 h-28 rounded-3xl overflow-hidden border-2 border-accent shadow-md bg-sand/20">
+          <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80" alt="Integrante 3" class="w-full h-full object-cover">
+        </div>
+        <div>
+          <h3 class="text-lg font-bold text-ink dark:text-white font-heading">Brisa Fernández</h3>
+          <p class="text-xs font-bold text-accent">Diseño UI / UX & Accesibilidad</p>
+          <p class="text-xs text-ink-muted dark:text-slate-300 mt-2 leading-relaxed">
+            Identidad de marca, tokens de color, contraste WCAG AA para luz solar y responsive.
+          </p>
+        </div>
+      </article>
+
+      <!-- Miembro 4 -->
+      <article class="card-surface p-6 text-center space-y-4 border border-sand/40 flex flex-col items-center">
+        <div class="w-28 h-28 rounded-3xl overflow-hidden border-2 border-primary shadow-md bg-sand/20">
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80" alt="Integrante 4" class="w-full h-full object-cover">
+        </div>
+        <div>
+          <h3 class="text-lg font-bold text-ink dark:text-white font-heading">Jorge Benítez</h3>
+          <p class="text-xs font-bold text-primary dark:text-sand-light">Geolocalización & Integración</p>
+          <p class="text-xs text-ink-muted dark:text-slate-300 mt-2 leading-relaxed">
+            Mapeo interactivo con Leaflet, cálculo de cercanía por GPS y pruebas funcionales.
+          </p>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Valores y Misión -->
+    <section class="card-surface p-8 sm:p-12 border border-sand/40 max-w-4xl mx-auto space-y-4 text-center">
+      <span class="text-3xl">🤝</span>
+      <h2 class="text-2xl font-bold text-ink dark:text-white font-heading">
+        Nuestro Compromiso con Río Cuarto
+      </h2>
+      <p class="text-sm text-ink-muted dark:text-slate-300 leading-relaxed max-w-2xl mx-auto">
+        Creemos que la tecnología debe acercar oportunidades reales a quienes producen con sus propias manos. FeriaZone no cobra comisiones por venta: es una herramienta pensada para potenciar a las economías familiares en cada plaza de nuestra ciudad.
+      </p>
+    </section>
+
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script type="module">
+    import { renderNavbar } from '../js/components/navbar.js';
+    import { renderFooter } from '../js/components/footer.js';
+    document.addEventListener('DOMContentLoaded', () => {
+      renderNavbar();
+      renderFooter();
+    });
+  </script>
+</body>
+</html>

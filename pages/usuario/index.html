@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Comprador — FeriaZone</title>
+  
+  <script>
+    (function() {
+      try {
+        var theme = localStorage.getItem('fz_theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (theme === 'dark' || (!theme && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <link rel="stylesheet" href="../../css/styles.css">
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-accent selection:text-white">
+
+  <div id="navbar-placeholder"></div>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow w-full space-y-8">
+    
+    <!-- Header del Panel -->
+    <div class="card-surface p-6 sm:p-8 border border-sand/40 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="flex items-center space-x-4">
+        <img id="user-avatar" src="" alt="Usuario" class="w-16 h-16 rounded-2xl object-cover border-2 border-accent">
+        <div>
+          <span class="text-xs font-bold text-accent uppercase tracking-wider">Panel del Vecino Comprador</span>
+          <h1 id="user-name" class="text-2xl sm:text-3xl font-black text-ink dark:text-white font-heading"></h1>
+          <p id="user-email" class="text-xs text-ink-muted dark:text-slate-400"></p>
+        </div>
+      </div>
+
+      <div class="flex gap-3">
+        <a href="../catalogo.html" class="btn-accent text-xs py-2.5 px-4">
+          Ir al Catálogo
+        </a>
+      </div>
+    </div>
+
+    <!-- SECCIÓN: Historial de Pedidos -->
+    <section class="space-y-4">
+      <h2 class="text-xl font-bold text-ink dark:text-white font-heading">
+        Mis Pedidos Realizados
+      </h2>
+      <div id="orders-list-container" class="space-y-3">
+        <!-- Inyección dinámica -->
+      </div>
+    </section>
+
+    <!-- SECCIÓN: Dejar Reseña -->
+    <section class="card-surface p-6 sm:p-8 space-y-6 border border-sand/40 max-w-2xl">
+      <div>
+        <h2 class="text-xl font-bold text-ink dark:text-white font-heading">
+          Dejar una Reseña de Producto o Feria
+        </h2>
+        <p class="text-xs text-ink-muted dark:text-slate-400 mt-1">
+          Tu opinión ayuda a los artesanos y a otros vecinos de Río Cuarto.
+        </p>
+      </div>
+
+      <form id="review-form" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-ink dark:text-white mb-1">¿Qué querés calificar?</label>
+          <div class="grid grid-cols-2 gap-3">
+            <label class="flex items-center space-x-2 p-2.5 rounded-xl border border-sand/60 bg-sand/10 cursor-pointer">
+              <input type="radio" name="review-type" value="product" checked class="text-accent">
+              <span class="text-xs font-bold text-ink dark:text-white">Un Producto</span>
+            </label>
+            <label class="flex items-center space-x-2 p-2.5 rounded-xl border border-sand/60 bg-sand/10 cursor-pointer">
+              <input type="radio" name="review-type" value="fair" class="text-accent">
+              <span class="text-xs font-bold text-ink dark:text-white">Una Feria Asistida</span>
+            </label>
+          </div>
+        </div>
+
+        <div id="product-select-group">
+          <label for="review-target" class="block text-xs font-bold text-ink dark:text-white mb-1">Elegir Ítem</label>
+          <select id="review-target" class="w-full px-4 py-2 rounded-xl border border-sand/60 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm">
+            <!-- Dinámico -->
+          </select>
+        </div>
+
+        <div>
+          <label for="review-rating" class="block text-xs font-bold text-ink dark:text-white mb-1">Puntuación</label>
+          <select id="review-rating" class="w-full px-4 py-2 rounded-xl border border-sand/60 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm">
+            <option value="5">★★★★★ (5 estrellas - Excelente)</option>
+            <option value="4">★★★★☆ (4 estrellas - Muy bueno)</option>
+            <option value="3">★★★☆☆ (3 estrellas - Bueno)</option>
+            <option value="2">★★☆☆☆ (2 estrellas - Regular)</option>
+            <option value="1">★☆☆☆☆ (1 estrella - Malo)</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="review-comment" class="block text-xs font-bold text-ink dark:text-white mb-1">Tu Comentario</label>
+          <textarea id="review-comment" rows="3" required placeholder="Contá qué te pareció la calidad, la atención y el producto..." class="w-full px-4 py-2.5 rounded-xl border border-sand/60 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm"></textarea>
+        </div>
+
+        <button type="submit" class="btn-accent py-2.5 px-6 text-sm font-bold shadow-sm">
+          Publicar Reseña
+        </button>
+      </form>
+    </section>
+
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script type="module">
+    import { renderNavbar } from '../../js/components/navbar.js';
+    import { renderFooter } from '../../js/components/footer.js';
+    import { auth } from '../../js/services/auth.js';
+    import { dataService } from '../../js/services/dataService.js';
+    import { formatCurrency } from '../../js/utils/formatters.js';
+    import { showToast } from '../../js/components/toast.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Guard de ruta: solo rol 'usuario'
+      if (!auth.requireAuth(['usuario'], '../login.html')) return;
+
+      renderNavbar();
+      renderFooter();
+
+      const user = auth.getCurrentUser();
+      document.getElementById('user-name').textContent = user.name;
+      document.getElementById('user-email').textContent = user.email;
+      document.getElementById('user-avatar').src = user.avatar;
+
+      // Renderizar pedidos
+      const orders = dataService.getOrders();
+      const ordersContainer = document.getElementById('orders-list-container');
+      if (orders.length === 0) {
+        ordersContainer.innerHTML = '<p class="text-xs text-ink-muted">Aún no realizaste ningún pedido simulado.</p>';
+      } else {
+        ordersContainer.innerHTML = orders.map(ord => `
+          <div class="card-surface p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border border-sand/30">
+            <div class="space-y-1">
+              <div class="flex items-center gap-2">
+                <span class="font-bold text-sm text-ink dark:text-white">Orden: ${ord.id}</span>
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300">${ord.status}</span>
+              </div>
+              <p class="text-xs text-ink-muted dark:text-slate-400">Fecha: ${ord.date} · ${ord.pickupMethod || 'Retiro acordado'}</p>
+              <ul class="text-xs text-ink dark:text-slate-200 mt-2 list-disc list-inside">
+                ${ord.items.map(it => `<li>${it.quantity}x ${it.name} (${formatCurrency(it.price)})</li>`).join('')}
+              </ul>
+            </div>
+            <div class="text-right sm:text-right w-full sm:w-auto">
+              <span class="text-xs text-ink-light block">Total</span>
+              <span class="text-lg font-black text-accent font-heading">${formatCurrency(ord.total)}</span>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // Selector de ítems para reseña
+      const targetSelect = document.getElementById('review-target');
+      const radioTypes = document.querySelectorAll('input[name="review-type"]');
+      const products = dataService.getProducts();
+      const fairs = dataService.getFairs();
+
+      function updateOptions(type) {
+        if (type === 'product') {
+          targetSelect.innerHTML = products.map(p => `<option value="${p.id}">${p.name} (${p.merchantName})</option>`).join('');
+        } else {
+          targetSelect.innerHTML = fairs.map(f => `<option value="${f.id}">${f.name}</option>`).join('');
+        }
+      }
+
+      radioTypes.forEach(r => {
+        r.addEventListener('change', () => updateOptions(r.value));
+      });
+      updateOptions('product');
+
+      // Submit de reseña
+      document.getElementById('review-form')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const type = document.querySelector('input[name="review-type"]:checked').value;
+        const targetId = targetSelect.value;
+        const rating = parseInt(document.getElementById('review-rating').value, 10);
+        const comment = document.getElementById('review-comment').value;
+
+        const newReview = {
+          author: user.name,
+          rating,
+          comment
+        };
+
+        if (type === 'product') {
+          newReview.productId = targetId;
+        } else {
+          newReview.fairId = targetId;
+        }
+
+        dataService.addReview(type, newReview);
+        showToast('¡Tu reseña fue publicada con éxito!', 'success');
+        document.getElementById('review-comment').value = '';
+      });
+    });
+  </script>
+</body>
+</html>
